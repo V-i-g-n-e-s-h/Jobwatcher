@@ -1,6 +1,7 @@
 """Bootstrapper that installs missing packages on the fly, then runs scraper."""
 import importlib
 import os
+from datetime import datetime
 import subprocess
 import sys
 from pathlib import Path
@@ -10,7 +11,7 @@ PKGS = [
     "requests",
     "beautifulsoup4",
 ]
-
+print(datetime.now().strftime("%Y-%m-%dT%H:%M:%S"), "Started executing.")
 ROOT = Path(__file__).resolve().parents[1]
 
 def ensure_python():
