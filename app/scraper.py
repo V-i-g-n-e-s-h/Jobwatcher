@@ -2,6 +2,7 @@ import importlib
 import os
 from pathlib import Path
 from typing import List, Set
+from datetime import datetime
 
 from .db import DB
 from .models import Job
@@ -12,6 +13,7 @@ DB_PATH = Path(os.environ.get("DB_PATH", "/data/data/com.termux/files/home/jobwa
 LOG_PATH = Path(os.environ.get("LOG_PATH", "/data/data/com.termux/files/home/jobwatcher/logs/jobwatcher.log"))
 
 def run_once():
+    notify(title="Executing", content=f"Scrapper: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}")
     setup_logging(LOG_PATH)
     db = DB(DB_PATH)
     for modname in SITES:
