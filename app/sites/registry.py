@@ -1,0 +1,3 @@
+SITES = [
+    "app.sites.mcd",
+]
