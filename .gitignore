@@ -214,3 +214,4 @@ data/*.db
 logs/*
 !.gitkeep
 .env
+.vscode

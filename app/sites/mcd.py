@@ -29,24 +29,23 @@ headers = {
     "sec-ch-ua-platform": '"Windows"'
 }
 
-data = r'''
-{
-    "requests":[
+data = {
+    "requests": [
         {
-            "indexName":"production__mcdscare2501__sort-rank",
-            "params":"aroundLatLng=53.3641815,-6.2926623&aroundRadius=16093&facetFilters=%5B%5B%22country%3AUnited%20Kingdom%22%2C%22country%3ARepublic%20of%20Ireland%22%5D%5D&facets=%5B%22business_area%22%2C%22contract_type%22%2C%22country%22%5D&getRankingInfo=true&highlightPostTag=__/ais-highlight__&highlightPreTag=__ais-highlight__&hitsPerPage=100&maxValuesPerFacet=100&page=0&query=&tagFilters="
+            "indexName": "production__mcdscare2501__sort-rank",
+            "params": "aroundLatLng=53.3641889%2C-6.2927314&aroundRadius=8047&facetFilters=%5B%5B%22country%3AUnited%20Kingdom%22%2C%22country%3ARepublic%20of%20Ireland%22%5D%5D&facets=%5B%22business_area%22%2C%22contract_type%22%2C%22country%22%5D&getRankingInfo=true&highlightPostTag=__%2Fais-highlight__&highlightPreTag=__ais-highlight__&hitsPerPage=100&maxValuesPerFacet=100&page=0&query=&tagFilters="
         },
         {
-            "indexName":"production__mcdscare2501__sort-rank",
-            "params":"analytics=false&aroundLatLng=53.3641815,-6.2926623&aroundRadius=16093&clickAnalytics=false&facets=country&getRankingInfo=true&highlightPostTag=__/ais-highlight__&highlightPreTag=__ais-highlight__&hitsPerPage=100&maxValuesPerFacet=100&page=0&query="
+            "indexName": "production__mcdscare2501__sort-rank",
+            "params": "analytics=false&aroundLatLng=53.3641889%2C-6.2927314&aroundRadius=8047&clickAnalytics=false&facets=country&getRankingInfo=true&highlightPostTag=__%2Fais-highlight__&highlightPreTag=__ais-highlight__&hitsPerPage=100&maxValuesPerFacet=100&page=0&query="
         }
     ]
 }
-'''
+
 
 def scrape() -> Iterable[Job]:
     # Pretend two jobs exist right now
-    response = requests.post(url, headers=headers, params=params, data=data)
+    response = requests.post(url, headers=headers, params=params, json=data)
     response.raise_for_status()
     result = response.json()
     for job in result["results"][0]["hits"]:

@@ -121,10 +121,19 @@ class DB:
         job_ids = [r["id"] for r in rows]
         if not job_ids:
             return []
-        now = now_iso()
+        # now = now_iso()
+        # cur.executemany(
+        #     "UPDATE jobs SET is_active=0, last_seen_at=? WHERE id=?",
+        #     [(now, jid) for jid in job_ids],
+        # )
         cur.executemany(
-            "UPDATE jobs SET is_active=0, last_seen_at=? WHERE id=?",
-            [(now, jid) for jid in job_ids],
+            "DELETE FROM events WHERE job_id=?",
+            [(jid,) for jid in job_ids],
+        )
+        self.conn.commit()
+        cur.executemany(
+            "DELETE FROM jobs WHERE id=?",
+            [(jid,) for jid in job_ids],
         )
         self.conn.commit()
         return job_ids
