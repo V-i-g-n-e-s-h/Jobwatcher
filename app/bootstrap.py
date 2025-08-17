@@ -10,6 +10,7 @@ REQUIRED_PY = (3, 10)
 PKGS = [
     "requests",
     "beautifulsoup4",
+    "lxml",
 ]
 print(datetime.now().strftime("%Y-%m-%dT%H:%M:%S"), "Started executing.")
 ROOT = Path(__file__).resolve().parents[1]
